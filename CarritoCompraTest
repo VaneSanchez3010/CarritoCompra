@@ -1,0 +1,95 @@
+import java.util.Scanner;
+
+public class CarritoCompraTest {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        CarritoCompras carrito = new CarritoCompras();
+
+        Producto producto1 = new Producto("FinexPix Pro2 3D Camara", 671.21);
+        Producto producto2 = new Producto("EXP Portable Hard Drive", 215.10);
+        Producto producto3 = new Producto("Luxury Ultra thin Wrist Watch", 2121.86);
+        Producto producto4 = new Producto("XP 1155 Intel Core Laptop",10232.35);
+
+
+        int opcion;
+
+        do {
+            System.out.println("\nProductos disponibles:");
+            System.out.println("1. FinexPix Pro2 3D Camara - Q671.21");
+            System.out.println("2. EXP Portable Hard Drive - Q215.10");
+            System.out.println("3. Luxury Ultra thin Wrist Watch - Q2121.86");
+            System.out.println("4. XP 1155 Intel Core Laptop - Q10232.35");
+            System.out.println("5. Mostrar carrito");
+            System.out.println("6. Mostrar total");
+            System.out.println("7. Eliminar producto del carrito");
+            System.out.println("0. Salir");
+            System.out.print("Selecciona una opción: ");
+            opcion = scanner.nextInt();
+
+            int cantidad;
+
+            switch (opcion) {
+                case 1:
+                    Sys0tem.out.print("¿Cuántas camaras agregar? ");
+                    cantidad = scanner.nextInt();
+                    carrito.agregarProducto(producto1, cantidad);
+                    break;
+                case 2:
+                    System.out.print("¿Cuántos reloj agregar? ");
+                    cantidad = scanner.nextInt();
+                    carrito.agregarProducto(producto2, cantidad);
+                    break;
+                case 3:
+                    System.out.print("¿Cuántas Laptop agregar? ");
+                    cantidad = scanner.nextInt();
+                    carrito.agregarProducto(producto3, cantidad);
+                    break;
+                case 4:
+                    System.out.print("¿Cuántos drive hard agregar? ");
+                    cantidad = scanner.nextInt();
+                    carrito.agregarProducto(producto4, cantidad);
+                    break;
+                case 5:
+                    carrito.mostrarCarrito();
+                    break;
+                case 6:
+                    System.out.println("Total: Q." + carrito.obtenerTotal());
+                    break;
+                case 7:
+                    System.out.print("Selecciona el producto a eliminar (1. FinexPix Pro2 3D Camara, 2. EXP Portable Hard Drive, 3. Luxury Ultra thin Wrist Watch, 4. XP 1155 Intel Core Laptop): ");
+                    int productoEliminar = scanner.nextInt();
+                    Producto productoAEliminar = null;
+
+                    switch (productoEliminar) {
+                        case 1:
+                            productoAEliminar = producto1;
+                            break;
+                        case 2:
+                            productoAEliminar = producto2;
+                            break;
+                        case 3:
+                            productoAEliminar = producto3;
+                            break;
+                        case 4:
+                            productoAEliminar = producto4;
+                            break;
+                        default:
+                            System.out.println("Opción no válida.");
+                            continue;
+                    }
+
+                    System.out.print("¿Cuántos " + productoAEliminar.getNombre() + " deseas eliminar? ");
+                    cantidad = scanner.nextInt();
+                    carrito.eliminarProducto(productoAEliminar, cantidad);
+                    break;
+                case 0:
+                    System.out.println("Saliendo del Carrito de compras");
+                    break;
+                default:
+                    System.out.println("Esta opción no es valida.");
+            }
+        } while (opcion != 0);
+
+        scanner.close();
+    }
+}
